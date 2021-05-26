@@ -2,11 +2,10 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
-    
+    <%= render @line_items %>
   </header>
 
   <div class="order-summary jumbotron">
-  <%# Render partial for line items here %>
       <div>Email:  <%= @order.email %></div>
       <div>Total:  $<%= @order.total_cents/100.to_d %> </div>
     <h4>Thank you for your order!</h4>
