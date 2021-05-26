@@ -4,6 +4,8 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if enhanced_cart[0]%>       
+  <% puts "hi #{enhanced_cart}" %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -31,7 +33,6 @@
       </tfoot>
     </table>
   </div>
-
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -48,5 +49,10 @@
       <% end %>
     </div>
   </div>
-
+<% else %>
+  <h3>
+    The Cart is empty, <br> <br>
+    Click <a href="/">here</a> to be redirected to home.
+  </h3>
+<% end %>
 </section>
