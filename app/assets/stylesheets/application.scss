@@ -28,6 +28,28 @@ form.button_to {
   }
 }
 
-label{
+label {
   font-weight: bold;
+}
+
+#team {
+  text-align: center;
+  padding:10px;
+  #profiles {
+    padding:20px;
+    display: flex;
+    flex-direction: row;
+    margin:auto;
+    justify-content: space-between;
+    .profile {
+      display: flex;
+      flex-direction: column;
+      img {
+        margin: auto;
+      }
+      p{
+        padding:10px 20px;
+      }
+    }
+  }
 }
