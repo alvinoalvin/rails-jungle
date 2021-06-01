@@ -47,13 +47,59 @@ RSpec.describe User, type: :model do
       expect(@user3.errors.messages[:email]).to include("has already been taken")
     end    
 
-    it "validate f_name exists" do
+    it "validate name exists" do
       expect(@user.name).to be_present 
     end    
+  end
 
-    it "validate L_name exists" do
-      expect(@user.name).to be_present 
-    end    
+  describe '.authenticate_with_credentials' do
 
+    it "logs in with correct email, password" do
+      @user.save!
+      userAuth = @user.authenticate_with_credentials("test@gmail.com","password123")
+    end
+    
+    it "logs in with incorrect email, incorrect password" do
+      @user.save!
+      userAuth = @user.authenticate_with_credentials("test2@gmail.com","password1223")
+    end
+    
+    it "logs in with incorrect email, correct password" do
+      @user.save!
+      userAuth = @user.authenticate_with_credentials("test2@gmail.com","password123")
+    end
+    
+    it "logs in with correct email, incorrect password" do
+      @user.save!
+      userAuth = @user.authenticate_with_credentials("test@gmail.com","password1223")
+    end
+    
+    it "logs in with correct email, password but form email is randomly upper cased" do
+      @user.save!
+      userAuth = @user.authenticate_with_credentials("TesT@GmaIl.com","password123")
+    end
+    
+    it "logs in with correct email, password but db email is randomly upper cased" do
+      user2 = User.new(
+        email:"tEsT@gmail.com", 
+        name:"Sam Smith", 
+        password:"password123", 
+        password_confirmation:"password123"
+      )
+      user2.save!
+      userAuth = user2.authenticate_with_credentials("test@gmail.com","password123")
+    end
+    
+    it "logs in with correct email, password but both db and form emails are randomly upper cased" do
+      user2 = User.new(
+        email:"tEsT@gmail.com", 
+        name:"Sam Smith", 
+        password:"password123", 
+        password_confirmation:"password123"
+      )
+      user2.save!
+      
+      userAuth = user2.authenticate_with_credentials("TesT@gmAil.com","password123")
+    end
   end
 end
