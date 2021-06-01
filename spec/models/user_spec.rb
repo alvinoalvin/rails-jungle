@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = User.new(email:"test@gmail.com", f_name:"Sam", L_name:"Smith", password:"password123", password_confirmation:"password123")
+    @user = User.new(
+      email:"test@gmail.com", 
+      name:"Sam Smith", 
+      password:"password123", 
+      password_confirmation:"password123"
+    )
   end
 
   describe 'Validations' do
@@ -25,7 +30,7 @@ RSpec.describe User, type: :model do
     it "validate password confirmation different as password" do
       @user2 = User.new(password:"password123", password_confirmation:"password_123")
 
-      expect(@user2.password).to eq @user2.password_confirmation 
+      expect(@user2.password).not_to eq @user2.password_confirmation 
     end    
 
     it "validate Email exists" do
@@ -33,20 +38,21 @@ RSpec.describe User, type: :model do
     end    
 
     it "validate Email duplicates not allowed" do
-      @user3 = User.new(email:"test@gmail.com", f_name:"Sam", L_name:"Smith", password:"password123", password_confirmation:"password123")
+      @user3 = User.new(email:"test@gmail.com", name:"Julius Salad", password:"password123", password_confirmation:"password123")
       @user.save
       @user3.save
 
       expect(@user3).to_not be_valid
-      expect(@product.errors.messages[:email]).to include("user with email already exists")
+      puts @user3.errors.messages[:email]
+      expect(@user3.errors.messages[:email]).to include("has already been taken")
     end    
 
     it "validate f_name exists" do
-      expect(@user.f_name).to be_present 
+      expect(@user.name).to be_present 
     end    
 
     it "validate L_name exists" do
-      expect(@user.L_name).to be_present 
+      expect(@user.name).to be_present 
     end    
 
   end
