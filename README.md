@@ -20,24 +20,24 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 8. Run `bin/rails s -b 0.0.0.0` to start the server
 
 ## Dependencies
-rails: 4.2.6
-pg
-sass-rails: 5.0
-uglifier: 1.3.0
-jquery-rails
-turbolinks
-jbuilder: 2.0
-sdoc: 0.4.0
+* rails: 4.2.6
+* pg
+* sass-rails: 5.0
+* uglifier: 1.3.0
+* jquery-rails
+* turbolinks
+* jbuilder: 2.0
+* sdoc: 0.4.0
 
-bcrypt
-puma
-bootstrap-sass
-font-awesome-rails
-money-rails
-carrierwave
-rmagick
-stripe
-faker
+* bcrypt
+* puma
+* bootstrap-sass
+* font-awesome-rails
+* money-rails
+* carrierwave
+* rmagick
+* stripe
+* faker
 
 ## Stripe Testing
 
